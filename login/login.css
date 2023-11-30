@@ -1,0 +1,158 @@
+/* body {
+    background:rgb(81, 0, 255);
+   ;
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    ;
+  
+  }
+  
+  .login-box {
+    width: 300px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #fff;
+    box-sizing: border-box;
+    padding: 40px;
+    background: linear-gradient(grey,blue,aqua);
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.6);
+    border-radius: 10px;
+  }
+  
+  h2 {
+    margin: 0 0 30px;
+    padding: 0;
+    color: #fff;
+    text-align: center;
+  }
+  
+  .user{
+    position: relative;
+  }
+  
+  .user input {
+    width: 100%;
+    padding: 10px 0;
+    font-size: 16px;
+    color: #fff;
+    margin-bottom: 30px;
+    border: none;
+    border-bottom: 1px solid #fff;
+    outline: none;
+    background: transparent;
+  }
+  
+  .user label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 10px 0;
+    font-size: 16px;
+    color: #fff;
+    pointer-events: none;
+    transition: 0.5s;
+  }
+  
+  .user input:focus ~ label,
+  .user input:valid ~ label {
+    top: -20px;
+    left: 0;
+    color: #03a9f4;
+    font-size: 12px;
+  }
+  
+  #loginBtn {
+    display: inline-block;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    border-radius: 5px;
+    background: #03a9f4;
+    color: #fff;
+    cursor: pointer;
+  }
+  
+  #loginBtn:hover {
+    background: #1e87f0;
+  }
+  
+  #loginStatus {
+    margin-top: 20px;
+    text-align: center;
+    color: #fff;
+  } */
+  
+  
+    
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+    background-color: #3498db;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.login {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.login h2 {
+    color: #333;
+}
+
+form {
+    margin-top: 20px;
+}
+
+.user {
+    margin-bottom: 20px;
+}
+
+label {
+    font-size: 16px;
+    color: #555;
+    display: block;
+    margin-bottom: 8px;
+}
+
+input {
+    width: 100%;
+    padding: 12px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+a {
+    display: inline-block;
+    background-color: #2ecc71;
+    color: #fff;
+    padding: 12px 24px;
+    text-decoration: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+a:hover {
+    background-color: #27ae60;
+}
+
+#loginStatus {
+    color: #e74c3c;
+    font-weight: bold;
+    margin-top: 20px;
+}
