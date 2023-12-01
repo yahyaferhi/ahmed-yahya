@@ -1,38 +1,39 @@
 function each(array, func) { 
     for (var i = 0; i < array.length; i++) { 
-          func(array[i], i); 
+          func(array[i], i) 
     } 
 }
 
 function map(array, f) { 
     var acc = []; 
     each(array, function(element, i) { 
-          acc.push(f(element, i)); 
-    }); 
-    return acc; 
+             acc.push(f(element, i)); 
+    })
+       return acc 
 }
 
 function filter(array, predicate) {
- var acc = [];
+      var  acc= []
  each(array, function (element, index) {
  
    if (predicate(element, index)) {
      
-     acc.push(element);
+     acc.push(element)
    }
- });
- return acc;
+ })
+
+ return acc
 }
 
 function reduce(array, f, acc) {
  if (acc === undefined) {
-   acc = array[0];
-   array = array.slice(1);
+   acc = array[0]
+   array = array.slice(1)
  }
- each(array, function (element, i) {
-   acc = f(acc, element, i);
- });
- return acc;
+ each (array, function (element,i) {
+     acc = f(acc,element, i)
+ })
+ return acc
 }
 var dummyData = [
   {
@@ -83,52 +84,66 @@ var dummyData = [
 
 ];
 
-
-
-
-
-
-function displayAllProduct() { 
-  $(".Product").empty();
-  dummyData.map(function(e) {
-    $(".Product").append(`
-     
-        <img src="${e.image}">
-        <h1>${e.name}</h1>
-        <h2>${e.price}</h2>
-        <h2>${e.category}</h2>
-        <button id="total">Add</button>
-      `
-    );
-  });
+function each(array, func) {
+  for (var i = 0; i < array.length; i++) {
+    func(array[i], i);
+  }
 }
 
-displayAllProduct();
-
-
-
-var totalprice=function(dummyData){
-  return reduce(dummyData,function(acc,e,i){
-      return acc+e.price
-  },0)
-}
-$('#total').on("click",totalprice)
-
-
-
-function searchProduct() {
-  var y = $("#input").val().toLowerCase();
- 
-  var arr = [];
+function displayAllProduct() {
+  $(".Product").empty()
+  $(".prductSearched").empty()
 
   each(dummyData, function (e) {
-      if (e.name.toLowerCase() === y)
-
-          arr.push(e);
-         
-  }); 
+    $(".Product").append(`
+      <img src="${e.image}">
+      <h1>${e.name}</h1>
+      <h2>${e.price}</h2>
+      <h2>${e.category}</h2>
+      <button class="total">Add</button>
+    `)
+  })
 }
 
+function displaySearchResults(results) {
+  $(".prductSearched").empty()
 
+  each(results, function (e) {
+    $(".prductSearched").append(`<li>
+      <img class="hi" src="${e.image}" alt="image">
+      <h1 class="name">${e.name}</h1>
+      <h2 class="price">${e.price}$</h2>
+      <h2 class="category">${e.category}</h2>
+      <button class="total">Add</button>
+      </li>
+    `)
+  })
+}
 
+function searchProduct() {
+  var searchTerm= $("#input").val().toLowerCase()
+  var searchResults=[]
 
+  each (dummyData, function (e) {
+           if (e.name.toLowerCase().includes(searchTerm)) {
+         searchResults.push(e)
+    }
+  })
+
+          if (searchResults.length > 0) {
+    displaySearchResults(searchResults)
+  } else
+  
+  {
+         alert("what are you looking for ?")
+  }
+}
+
+     $(document).ready(function () {
+  
+  
+  $("#btn").on("click", searchProduct )
+
+   
+           displayAllProduct()
+});
