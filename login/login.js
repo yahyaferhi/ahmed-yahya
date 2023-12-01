@@ -71,18 +71,13 @@ $("#loginBtn").on("click", function () {
     var role=$ ("#role").val()
 
 
-if (login(username, password,role)) {
-    window.location.replace("C:\Users\dahec\Desktop\project_paire\ahmed-yahya\user-interface\user.js");
+if (login(username,password,role)) {
+    
+    window.location.href="../user-interface/user.html";
+    }
+           
 
-            // $('#loginStatus').text('Login successful!')
-            //  window.location.replace = "C:\Users\dahec\Desktop\project_paire\ahmed-yahya\user-interface\user.html"
-            }
-
-            // else if (login(username, password,role)) {
-            //     $('#loginStatus').text('Login successful!')
-            //     window.location.href = "admin.html"
-                
-            // }
+           
             else {
                         alert('Invalid username or password  or role Please try again')
                       

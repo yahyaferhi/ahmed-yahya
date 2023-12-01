@@ -1,39 +1,38 @@
-function each(array, func) { 
-    for (var i = 0; i < array.length; i++) { 
-          func(array[i], i) 
-    } 
+function each(array, func) {
+  for (var i = 0; i < array.length; i++) {
+    func(array[i], i);
+  }
 }
 
-function map(array, f) { 
-    var acc = []; 
-    each(array, function(element, i) { 
-             acc.push(f(element, i)); 
-    })
-       return acc 
+function map(array, f) {
+  var acc = [];
+  each(array, function (element, i) {
+    acc.push(f(element, i));
+  });
+  return acc;
 }
 
 function filter(array, predicate) {
-      var  acc= []
- each(array, function (element, index) {
- 
-   if (predicate(element, index)) {
-     
-     acc.push(element)
-   }
- })
+  var acc = [];
+  each(array, function (element, index) {
 
- return acc
+    if (predicate(element, index)) {
+
+      acc.push(element);
+    }
+  });
+  return acc;
 }
 
 function reduce(array, f, acc) {
- if (acc === undefined) {
-   acc = array[0]
-   array = array.slice(1)
- }
- each (array, function (element,i) {
-     acc = f(acc,element, i)
- })
- return acc
+  if (acc === undefined) {
+    acc = array[0];
+    array = array.slice(1);
+  }
+  each(array, function (element, i) {
+    acc = f(acc, element, i);
+  });
+  return acc;
 }
 var dummyData = [
   {
@@ -44,7 +43,7 @@ var dummyData = [
   },
   {
     name: "Jacket",
-    image: "https://www.stormtech.ca/cdn/shop/products/QX-1_FRONT_AzureBlue_b25b323a-4e71-4f4b-8c95-0083026df8a7_2000x.jpg?v=1687562447",
+    image: "https://img01.ztat.net/article/spp-media-p1/78c8a36dfcb244d3aad32cbbb9b969d7/0dafbd64e9b74f78a616c590c51f5699.jpg?imwidth=762",
     price: 49.99,
     category: "Clothing",
   },
@@ -73,77 +72,152 @@ var dummyData = [
     price: 19.99,
     category: "Toys",
   },
- 
+
   {
     name: "makeup",
     image: "https://i.pinimg.com/736x/65/22/aa/6522aa1473fa1cc40eef482e1419fdf8.jpg",
     price: 24.99,
     category: "Beauty",
   }
-  
+
 
 ];
 
-function each(array, func) {
-  for (var i = 0; i < array.length; i++) {
-    func(array[i], i);
-  }
-}
+
+
+
+
+
+
+
+
 
 function displayAllProduct() {
-  $(".Product").empty()
-  $(".prductSearched").empty()
-
+  $(".Product").empty();
   each(dummyData, function (e) {
     $(".Product").append(`
-      <img src="${e.image}">
-      <h1>${e.name}</h1>
-      <h2>${e.price}</h2>
-      <h2>${e.category}</h2>
-      <button class="total">Add</button>
-    `)
+      <div>
+        <img class="1" src="${e.image}">
+        <h1>${e.name}</h1>
+        <h2>${e.price}</h2>
+        <h2>${e.category}</h2>
+
+        <button class="addBtn" data-price="${e.price}">Add</button>
+        </div>`
+
+    );
+  });
+  $(".1").css({
+
+    "width": "200px",
+    "height": "auto"
   })
+
+
 }
 
-function displaySearchResults(results) {
-  $(".prductSearched").empty()
+displayAllProduct();
 
-  each(results, function (e) {
-    $(".prductSearched").append(`<li>
-      <img class="hi" src="${e.image}" alt="image">
-      <h1 class="name">${e.name}</h1>
-      <h2 class="price">${e.price}$</h2>
-      <h2 class="category">${e.category}</h2>
-      <button class="total">Add</button>
-      </li>
-    `)
-  })
-}
+var total = []
 
-function searchProduct() {
-  var searchTerm= $("#input").val().toLowerCase()
-  var searchResults=[]
-
-  each (dummyData, function (e) {
-           if (e.name.toLowerCase().includes(searchTerm)) {
-         searchResults.push(e)
+function addPrice(name) {
+  each(dummyData, function (e, i) {
+    if (e.name === name) {
+      total.push(e.price)
     }
   })
-
-          if (searchResults.length > 0) {
-    displaySearchResults(searchResults)
-  } else
-  
-  {
-         alert("what are you looking for ?")
-  }
+  console.log(total);
 }
 
-     $(document).ready(function () {
-  
-  
-  $("#btn").on("click", searchProduct )
+var prices = [];
+var all = 0
 
-   
-           displayAllProduct()
+$('.addBtn').on('click', function () {
+  var productPrice = $(this).data('price')
+  prices.push(productPrice)
+ 
+  
+  for (let z = 0; z < prices.length; z++) {
+    all += prices[z]
+    
+  }
+  updateTotal(all)
+  
 });
+$(".total-card").append(`<h1>Total</h1>`)
+
+function updateTotal(number) {
+  $('.total-card').text(number)
+}
+function searchProduct() {
+  var searchinput = $("#input").val().toLowerCase()
+
+  var arr = []
+
+  each(dummyData, function (e) {
+    if (e.name.toLowerCase() === searchinput)
+
+      arr.push(e)
+
+  });
+  if (arr.length > 0) {
+    $(".11").attr("src", arr[0].image)
+    $(".22").text(arr[0].name)
+    $(".33").text(+ arr[0].price)
+    $(".44").text(arr[0].category)
+  } else {
+    $(".11").attr("src", "https://www.breathearomatherapy.com/assets/images/global/no-product.png")
+    $(".22").text("your product is not found ")
+    $(".33").text("Not found")
+    $(".44").text("Not found")
+
+
+  }
+  window.location.href = "search.html"
+}
+
+ $("#btn").on("click", searchProduct)
+
+
+// function displaySearchResults(results) {
+//   $(".prductSearched").empty()
+
+//  each(results, function (e) {
+//    $(".prductSearched").append(<li>
+//      <img class="hi" src="${e.image}" alt="image">
+//      <h1 class="name">${e.name}</h1>
+//      <h2 class="price">${e.price}$</h2>
+//      <h2 class="category">${e.category}</h2>
+//      <button class="total">Add</button>
+//      </li>
+//    )
+//  })
+// }
+
+// function searchProduct() {
+//  var searchTerm= $("#input").val().toLowerCase()
+//  var searchResults=[]
+
+//  each (dummyData, function (e) {
+//           if (e.name.toLowerCase().includes(searchTerm)) {
+//         searchResults.push(e)
+//    }
+//  })
+
+//          if (searchResults.length > 0) {
+//    displaySearchResults(searchResults)
+//  } else
+
+//  {
+//         alert("what are you looking for ?")
+//  }
+// }
+
+//     $(document).ready(function () {
+
+
+//  $("#btn").on("click", searchProduct )
+
+
+//           displayAllProduct()
+// });
